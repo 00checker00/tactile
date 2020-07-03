@@ -44,7 +44,7 @@ public class ManoEvents : MonoBehaviour
 	{
 		if (!statusAnimator)
 		{
-			GameObject.Find("statusAnimator").GetComponent<Animator>();
+ 			GameObject.Find("statusAnimator").GetComponent<Animator>();
 			Debug.LogError("The application needs the ManoMotion canvas in order to display status messages through the animator");
 			return;
 		}
@@ -106,7 +106,7 @@ public class ManoEvents : MonoBehaviour
 	/// Displays Log messages from the Manomotion Flags 
 	/// </summary>
 	/// <param name="message">Requires the string message to be displayed</param>
-	void DisplayLogMessage(string message)
+public	void DisplayLogMessage(string message)
 	{
 		if (!statusAnimator)
 		{
