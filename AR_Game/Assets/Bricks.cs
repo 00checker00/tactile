@@ -57,9 +57,7 @@ public class Bricks : MonoBehaviour
            else {
                 Debug.Log("Baustein losgelassen");
 
-                   
-                if(grid00.transform.position.x > )
-                
+            
 
                 isMoving = false;
             }
