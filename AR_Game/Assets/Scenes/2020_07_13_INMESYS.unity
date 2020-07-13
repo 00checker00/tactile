@@ -6053,6 +6053,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8504ddba966c5459c5954aff90da2d, type: 3}
+--- !u!95 &1750047854 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95380660509660732, guid: 0f8504ddba966c5459c5954aff90da2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1750047853}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1750894398
 GameObject:
   m_ObjectHideFlags: 0
@@ -7666,7 +7672,7 @@ PrefabInstance:
         type: 3}
       propertyPath: statusAnimator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1750047854}
     - target: {fileID: 3421213658743180402, guid: d51db39ed46eb16419119819e79cc835,
         type: 3}
       propertyPath: cam
