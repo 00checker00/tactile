@@ -38,16 +38,19 @@ public class GameController : MonoBehaviour
 
     // Aktuelles Motiv aus den JSON-Daten holen und anzeigen
     void displayMotive(int index) {
+        currentMotive = index;
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
-        currentMotive = index;
-        GameObject currentCell;
         foreach(Cell cell in motive.cells) {
             foreach(string cellid in cell.cellids) {
-                currentCell = GameObject.Find(cellid);
-                currentCell.GetComponent<Image>().color = new Color32((byte)cell.cellcolor[0], (byte)cell.cellcolor[1], (byte)cell.cellcolor[2], 255);
+                GameObject.Find(cellid).GetComponent<Image>().color = new Color32(
+                                                                        (byte)cell.cellcolor[0], 
+                                                                        (byte)cell.cellcolor[1], 
+                                                                        (byte)cell.cellcolor[2], 255);
             }
         }
+        updateNotes("Motiv " + motive.name + " merken!");
+        updateLevel(motive.level);
         //swapBricksForMotive(index);
     }
     
@@ -55,13 +58,12 @@ public class GameController : MonoBehaviour
     void hideMotive(int index) {
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
-        GameObject currentCell;
         foreach(Cell cell in motive.cells) {
             foreach(string cellid in cell.cellids) {
-                currentCell = GameObject.Find(cellid);
-                currentCell.GetComponent<Image>().color = new Color32(0, 0, 0, 100);
+                GameObject.Find(cellid).GetComponent<Image>().color = new Color32(0, 0, 0, 100);
             }
         }
+        updateNotes("Motiv " + motive.name + " bauen!");
     }
 
     void swapBricksForMotive(int index) {
@@ -74,12 +76,12 @@ public class GameController : MonoBehaviour
     }
 
     // Level aktualisieren
-    void updateLevel() {
-
+    void updateLevel(int level) {
+        GameObject.Find("LevelLabel").GetComponent<Text>().text = "Level " + level;
     }
 
     // Hinweistext anpassen
-    void updateNotes() {
-
+    void updateNotes(string notes) {
+        GameObject.Find("NotesLabel").GetComponent<Text>().text = notes;
     }
 }

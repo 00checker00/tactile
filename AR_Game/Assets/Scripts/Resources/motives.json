@@ -1,8 +1,8 @@
 {
 	"motives": [
 		{
-			"name": "Tutorial",
-			"level": 0,
+			"name": "Warm-Up",
+			"level": 1,
 			"cells": [{
 				"cellids": ["3_3","4_3","5_3"],
 				"cellcolor": [116,180,248]
