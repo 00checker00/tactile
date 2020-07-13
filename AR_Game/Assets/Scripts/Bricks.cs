@@ -10,9 +10,7 @@ public class Bricks : MonoBehaviour
     public bool dropped = false;                // Wurde der Baustein abgelegt?
     Vector3 poiPosition = new Vector3();        // Position des Point of Interest
     Vector3 brickPosition = new Vector3();      // Position des Bausteins 
-    //private GameObject cell;                  // Zelle des Grids, mit der Baustein kollidiert
     public List<GameObject> cells;              // Liste mit Zellen, die aktuell mit dem Baustein kollidieren
-              
     
     // Initialisierung
     void Start() {
@@ -34,10 +32,7 @@ public class Bricks : MonoBehaviour
         if(transform.position.x == 0) {
             isMoving = false;
             transform.position = brickPosition;
-        }/*
-        if(isMoving == false && cell != null) {
-            cell.GetComponent<UnityEngine.UI.Image>().color = GetComponent<UnityEngine.UI.Image>().color;
-        }*/
+        }
     }
     
     // Funktion zur Erkennung des Greifens und des Loslassens eines Bausteins (PICK und DROP)
