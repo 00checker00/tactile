@@ -5,28 +5,30 @@
 			"level": "1",
 			"cells": [
 				{
-					"id": "A_1",
-					"cellcolor": [ {
-						"r": "255",
-						"g": "245",
-						"b": "235"
-					} ]
+					"cellid": "A_1",
+					"cellcolor": [255,245,235,1]
 				},
 				{	
-					"id": "A_2",
-					"cellcolor": [ {
-						"r": "155",
-						"g": "145",
-						"b": "135"
-					} ]
+					"cellid": "A_2",
+					"cellcolor": [155,145,135,1]
 				},					
 				{	
-					"id": "A_3",
-					"cellcolor": [ {
-						"r": "125",
-						"g": "115",
-						"b": "105"
-					} ]
+					"cellid": "A_3",
+					"cellcolor": [125,115,105,1]
+				}
+			],
+			"bricks": [
+				{
+					"brickid": "Brick_C",
+					"brickcolor": [19,18,175,1],
+					"width": 1,
+					"height": 2
+				},
+				{	
+					"brickid": "Brick_A",
+					"brickcolor": [165,15,145,1],
+					"width": 1,
+					"height": 2
 				}
 			]
 		},
@@ -35,20 +37,26 @@
 			"level": "1",
 			"cells": [
 				{
-					"id": "A_7",
-					"cellcolor": [ {
-						"r": "195",
-						"g": "185",
-						"b": "175"
-					} ]					
+					"cellid": "A_7",
+					"cellcolor": [195,185,175,1]				
 				},
 				{	
-					"id": "A_6",
-					"cellcolor": [ {
-						"r": "165",
-						"g": "155",
-						"b": "145"
-					} ]
+					"cellid": "A_6",
+					"cellcolor": [165,155,145,1]
+				}
+			],
+			"bricks": [
+				{
+					"brickid": "Brick_A",
+					"brickcolor": [95,185,175,1],
+					"width": 3,
+					"height": 2
+				},
+				{	
+					"brickid": "Brick_C",
+					"brickcolor": [135,155,145,1],
+					"width": 2,
+					"height": 1
 				}
 			]
 		},
@@ -57,20 +65,26 @@
 			"level": "1",
 			"cells": [
 				{
-					"id": "A_4",
-					"cellcolor": [ {
-						"r": "195",
-						"g": "185", 
-						"b": "175"
-					} ]
+					"cellid": "A_4",
+					"cellcolor": [195,185,175,1]
 				},
 				{	
-					"id": "A_5",
-					"cellcolor": [ {
-						"r": "165",
-						"g": "155",
-						"b": "145"
-					} ]
+					"cellid": "A_5",
+					"cellcolor": [165,155,145,1]
+				}
+			],
+			"bricks": [
+				{
+					"brickid": "Brick_A",
+					"brickcolor": [195,185,175,1],
+					"width": 1,
+					"height": 2
+				},
+				{	
+					"brickid": "Brick_B",
+					"brickcolor": [165,155,145,1],
+					"width": 2,
+					"height": 2
 				}
 			]
 		}

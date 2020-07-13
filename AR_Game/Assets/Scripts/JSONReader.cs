@@ -10,14 +10,16 @@ public class JSONReader : MonoBehaviour
         Motives motivesInJson = JsonUtility.FromJson<Motives>(jsonFile.text);
         Debug.Log("motivesInJson: " + motivesInJson);
         foreach (Motive motive in motivesInJson.motives) {
-            Debug.Log("Found motive: " + motive.name + ", level: " + motive.level + ", cell: " + motive.cells);
+            Debug.Log("Motive: " + motive.name + ", Level: " + motive.level);
             foreach(Cell cell in motive.cells) {
-                Debug.Log("Found cell id: " + cell.id);
-                foreach(Cellcolor color in cell.cellcolor) {
-                    Debug.Log("Color r: " + color.r);
-                    Debug.Log("Color g: " + color.g);
-                    Debug.Log("Color b: " + color.b);
-                }
+                Debug.Log("Found CellID: " + cell.cellid);
+                foreach(int color in cell.cellcolor) 
+                    Debug.Log("Color: " + color);
+            }
+            foreach(Brick brick in motive.bricks) {
+                Debug.Log("BrickID: " + brick.brickid + "width: " + brick.width + "height: " + brick.height);
+                foreach(int color in brick.brickcolor) 
+                    Debug.Log("Color: " + color);
             }
         }
     }
