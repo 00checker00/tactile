@@ -7,19 +7,21 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     // Timer für das Anzeigen und Merken des Motives
-    private double displayTime = 10.0;
+    public double displayTime = 10.0;
     public bool displayTimerRunning = false;
+    public bool displayTimerExpired = false;
 
     // Timer für das Nachbauen des Motivs
-    private double buildTime = 60.0;
+    public double buildTime = 60.0;
     public bool buildTimerRunning = false;
+    public bool buildTimerExpired = false;
 
     void Start() {
         startDisplayTimer();
     }
 
     void Update() {
-        //Debug.Log("DisplayTime: " + displayTime + "BuildTime: " + buildTime + "BuildTimerRunning: " + buildTimerRunning);
+        Debug.Log("DisplayTime: " + displayTime + " BuildTime: " + buildTime + " BuildTimerRunning: " + buildTimerRunning);
 
         if(displayTimerRunning) {
             displayTime -= Time.deltaTime;
@@ -53,6 +55,7 @@ public class Timer : MonoBehaviour
 
     public void stopDisplayTimer() {
         displayTimerRunning = false;
+        displayTimerExpired = true;
         displayTime = 10.0;
     }
 
@@ -63,6 +66,7 @@ public class Timer : MonoBehaviour
 
     public void stopBuildTimer() {
         buildTimerRunning = false;
+        buildTimerExpired = true;
         buildTime = 60.0;
     }
 }

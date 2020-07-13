@@ -8,15 +8,12 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     void Start() {
-        GameObject[] children;
-        children = GetComponentsInChildren<GameObject>();
-        foreach (GameObject child in children){
-            child.SetActive(false);
-        } 
+        
     }
 
-    void Update() {
-        
+    public void hideGrid() {
+        foreach (RectTransform child in transform)
+            child.gameObject.SetActive(false);
     }
 
     // Anzahl der eingeblendeten Kacheln im Grid aktualisieren, basierend auf dem aktuellen Level 
