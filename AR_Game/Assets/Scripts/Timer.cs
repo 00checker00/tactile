@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     public bool displayTimerExpired = false;
 
     // Timer für das Nachbauen des Motivs
-    public double buildTime = 60.0;
+    public double buildTime = 20.0;
     public bool buildTimerRunning = false;
     public bool buildTimerExpired = false;
 
@@ -21,8 +21,7 @@ public class Timer : MonoBehaviour
     }
 
     void Update() {
-        Debug.Log("DisplayTime: " + displayTime + " BuildTime: " + buildTime + " BuildTimerRunning: " + buildTimerRunning);
-
+        //Debug.Log("DisplayTime: " + displayTime + " BuildTime: " + buildTime + " BuildTimerRunning: " + buildTimerRunning);
         if(displayTimerRunning) {
             displayTime -= Time.deltaTime;
             this.gameObject.GetComponent<Text>().text = System.Convert.ToInt32(displayTime).ToString();
@@ -30,10 +29,7 @@ public class Timer : MonoBehaviour
         if(displayTime < 0) {
             stopDisplayTimer();
             startBuildTimer();
-            // Motiv ausblenden
-            // Spiel beginnen
         }
-
         if(buildTimerRunning) {
             buildTime -= Time.deltaTime;
             this.gameObject.GetComponent<Text>().text = System.Convert.ToInt32(buildTime).ToString();
@@ -41,8 +37,6 @@ public class Timer : MonoBehaviour
         if(buildTime < 0) {
             stopBuildTimer();
             startDisplayTimer();
-            // Zeit abgelaufen
-            // Nächstes Motiv
         }
     }
 
@@ -67,6 +61,6 @@ public class Timer : MonoBehaviour
     public void stopBuildTimer() {
         buildTimerRunning = false;
         buildTimerExpired = true;
-        buildTime = 60.0;
+        buildTime = 20.0;
     }
 }
