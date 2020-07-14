@@ -17,10 +17,13 @@ public class GameController : MonoBehaviour
     private int currentMotive;          // Index des aktuellen Motiv
 
     void Start() {
+        // Initialisierung der Variablen
         brickList = new List<GameObject>();
         reader = GameObject.Find("JSONReader");
         grid = GameObject.Find("Grid");
         timer = GameObject.Find("TimerLabel").GetComponent<Timer>();
+
+        // Erstes Motiv einblenden
         currentMotive = 0;
         displayMotive(0);
     }
@@ -36,6 +39,7 @@ public class GameController : MonoBehaviour
         if(timer.buildTimerExpired) {
             timer.buildTimerExpired = false;
             currentMotive++;
+            grid.GetComponent<GridManager>().clearGrid();
             displayMotive(currentMotive);
         }
     }
@@ -45,11 +49,13 @@ public class GameController : MonoBehaviour
         currentMotive = index;
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
+        
         foreach(Cell cell in motive.cells) {
             foreach(string cellid in cell.cellids) {
                 GameObject.Find(cellid).GetComponent<Image>().color = new Color32((byte)cell.cellcolor[0], 
                                                                                   (byte)cell.cellcolor[1], 
                                                                                   (byte)cell.cellcolor[2], 255);
+                Debug.Log(GameObject.Find(cellid).GetComponent<Image>().color);
             }
         }
         clearBrickList(brickList);
@@ -71,10 +77,14 @@ public class GameController : MonoBehaviour
     // Steine für aktuelles Motiv instanziieren und anzeigen lassen
     void swapBricksForMotive(int index) {
         Motive motive = jsonMotives.motives[index];
+        int yPosition = 100;
         for(int i = 0; i < motive.bricks.Count; i++) {
-            GameObject obj = prefabs.Find((x) => x.name == motive.bricks[i].brickid);
-            GameObject prefab = Instantiate(obj, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
-            
+            GameObject obj = prefabs.Find((x) => x.name == motive.bricks[i].brickid);           
+            GameObject prefab = Instantiate(obj, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("Canvas").transform);            
+            RectTransform rt = prefab.GetComponent<RectTransform>();
+            //float height = GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height;
+            rt.anchoredPosition = new Vector3(-355, yPosition, 0); 
+            yPosition -= 100;
             foreach(Transform child in prefab.transform) 
                 child.GetComponent<Image>().color = new Color32((byte)motive.bricks[i].brickcolor[0], 
                                                                 (byte)motive.bricks[i].brickcolor[1], 
@@ -93,6 +103,7 @@ public class GameController : MonoBehaviour
         GameObject.Find("NotesLabel").GetComponent<Text>().text = notes;
     }
 
+    // Liste mit den Bausteinen leeren für die Bausteine des nächsten Motivs
     void clearBrickList(List<GameObject> list) {
         foreach(GameObject obj in list) 
             GameObject.Destroy(obj);

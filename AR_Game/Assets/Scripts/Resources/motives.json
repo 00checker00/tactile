@@ -1,7 +1,7 @@
 {
 	"motives": [
 		{
-			"name": "Warm-Up",
+			"name": "Easy",
 			"level": 1,
 			"cells": [{
 				"cellids": ["3_3","4_3","5_3"],
@@ -13,13 +13,13 @@
 			}],
 			"bricks": [
 				{
-					"brickid": "Brick_B",
+					"brickid": "Brick_D",
 					"brickcolor": [116,180,248],
 					"width": 2,
 					"height": 1
 				},
 				{	
-					"brickid": "Brick_B",
+					"brickid": "Brick_D",
 					"brickcolor": [121,210,70],
 					"width": 2,
 					"height": 1

@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     public bool displayTimerExpired = false;
 
     // Timer für das Nachbauen des Motivs
-    public double buildTime = 20.0;
+    public double buildTime = 30.0;
     public bool buildTimerRunning = false;
     public bool buildTimerExpired = false;
 
@@ -61,6 +61,6 @@ public class Timer : MonoBehaviour
     public void stopBuildTimer() {
         buildTimerRunning = false;
         buildTimerExpired = true;
-        buildTime = 20.0;
+        buildTime = 30.0;
     }
 }

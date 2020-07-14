@@ -9,20 +9,21 @@ using UnityEngine.UI;
 public class GridManager : MonoBehaviour
 {
     public Color cellColor;
-    void Start() {
-        foreach(Transform child in transform) {
-            child.gameObject.GetComponent<Image>().color = cellColor;
-        }
+    void Awake() {
+        clearGrid();
     }
 
+    //fixen
     public void hideGrid() {
         foreach (RectTransform child in transform)
             child.gameObject.SetActive(false);
     }
-    void updateGrid(int level) {
-        
-    }
 
+    public void clearGrid() {
+        foreach(Transform child in transform) {
+            child.gameObject.GetComponent<Image>().color = cellColor;
+        }
+    }
     // Motiv zum Merken anzeigen
     void displayMotiveInGrid() {
 
