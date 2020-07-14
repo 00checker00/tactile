@@ -1,79 +1,199 @@
 {
 	"motives": [
 		{
-			"name": "Easy",
-			"level": 1,
-			"cells": [{
-				"cellids": ["3_3","4_3","5_3"],
-				"cellcolor": [116,180,248]
-			},
-			{
-				"cellids": ["3_4","4_4","5_4"],
-				"cellcolor": [121,210,70]
-			}],
-			"bricks": [
-				{
-					"brickid": "Brick_D",
-					"brickcolor": [116,180,248],
-					"width": 2,
-					"height": 1
-				},
-				{	
-					"brickid": "Brick_D",
-					"brickcolor": [121,210,70],
-					"width": 2,
-					"height": 1
-				}
-			]
-		},
+            "name": "Easy",
+            "level": 1,
+            "cells": [{
+                "cellids": ["3_3","4_3","5_3"],
+                "cellcolor": [116,180,248]
+            },
+            {
+                "cellids": ["3_4","4_4","5_4"],
+                "cellcolor": [121,210,70]
+            }],
+            "bricks": [
+                {
+                    "brickid": "Brick_D",
+                    "brickcolor": [116,180,248],
+                    "width": 2,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_D",
+                    "brickcolor": [121,210,70],
+                    "width": 2,
+                    "height": 1
+                }
+            ]
+        },
+        {
+            "name": "Kreuz",
+            "level": 1,
+            "cells": [{
+                "cellids": ["3_2","4_2","5_2","2_3","3_3","4_3","5_3","6_3","2_4","3_4","4_4","5_4","6_4","2_5","3_5","4_5","5_5","6_5","3_6","4_6","5_6"],
+                "cellcolor": [212,0,16]
+            }],
+            "bricks": [
+                {
+                    "brickid": "Brick_B",
+                    "brickcolor": [212,0,16],
+                    "width": 2,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_C",
+                    "brickcolor": [212,0,16],
+                    "width": 2,
+                    "height": 2
+                }
+            ]
+        },
+        {
+            "name": "Lachendes Gesicht",
+            "level": 1,
+            "cells": [{
+                "cellids": ["3_2","5_2"],
+                "cellcolor": [0,0,0]
+            },
+            {
+                "cellids": ["4_2","3_3","4_3","5_3"],
+                "cellcolor": [255,255,255]
+            },
+            {
+                "cellids": ["3_4","4_4","5_4","4_5","5_5"],
+                "cellcolor": [123,1,26]
+            }],
+            "bricks": [
+                {
+                    "brickid": "Brick_A",
+                    "brickcolor": [0,0,0],
+                    "width": 1,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_A",
+                    "brickcolor": [255,255,255],
+                    "width": 1,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_B",
+                    "brickcolor": [123,1,26],
+                    "width": 2,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_C",
+                    "brickcolor": [123,1,26],
+                    "width": 2,
+                    "height": 2
+                }
+            ]
+        },
+        {
+            "name": "Baum",
+            "level": 2,
+            "cells": [{
+                "cellids": ["3_2","5_2","3_3","4_3","4_4","5_4"],
+                "cellcolor": [10,127,35]
+            },
+            {
+                "cellids": ["4_2","3_4","5_3"],
+                "cellcolor": [87,180,54]
+            },
+            {
+                "cellids": ["4_4","4_5","4_6"],
+                "cellcolor": [96,61,26]
+            }],
+            "bricks": [
+                {
+                    "brickid": "Brick_A",
+                    "brickcolor": [87,180,54],
+                    "width": 1,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_A",
+                    "brickcolor": [10,127,35],
+                    "width": 1,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_B",
+                    "brickcolor": [96,61,26],
+                    "width": 2,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_B",
+                    "brickcolor": [10,127,35],
+                    "width": 2,
+                    "height": 1
+                }
+            ]
+        },
+        {
+            "name": "Kleiner Vogel",
+            "level": 2,
+            "cells": [{
+                "cellids": ["6_3","3_6"],
+                "cellcolor": [255,176,58]
+            },
+            {
+                "cellids": ["4_2","4_3","5_3","2_4","3_4","4_4","2_5","3_5","4_5"],
+                "cellcolor": [22,118,245]
+            },
+            {
+                "cellids": ["5_2"],
+                "cellcolor": [0,0,0]
+            }],
+            "bricks": [
+                {
+                    "brickid": "Brick_A",
+                    "brickcolor": [0,0,0],
+                    "width": 1,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_A",
+                    "brickcolor": [255,176,58],
+                    "width": 1,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_B",
+                    "brickcolor": [96,61,26],
+                    "width": 2,
+                    "height": 1
+                },
+                {   
+                    "brickid": "Brick_C",
+                    "brickcolor": [22,118,245],
+                    "width": 2,
+                    "height": 2
+                }
+            ]
+        },
 		{
-			"name": "Kreuz",
-			"level": 1,
+			"name": "Haus",
+			"level": 2,
 			"cells": [{
-				"cellids": ["3_2","4_2","5_2","2_3","3_3","4_3","5_3","6_3","2_4","3_4","4_4","5_4","6_4","2_5","3_5","4_5","5_5","6_5","3_6","4_6","5_6"],
-				"cellcolor": [212,0,16]
-			}],
-			"bricks": [
-				{
-					"brickid": "Brick_B",
-					"brickcolor": [212,0,16],
-					"width": 2,
-					"height": 1
-				},
-				{	
-					"brickid": "Brick_C",
-					"brickcolor": [212,0,16],
-					"width": 2,
-					"height": 2
-				}
-			]
-		},
-		{
-			"name": "Lachendes Gesicht",
-			"level": 1,
-			"cells": [{
-				"cellids": ["3_2","5_2"],
-				"cellcolor": [0,0,0]
-			},
-			{
-				"cellids": ["4_2","3_3","4_3","5_3"],
-				"cellcolor": [255,255,255]
-			},
-			{
-				"cellids": ["3_4","4_4","5_4","4_5","5_5"],
+				"cellids": ["4_2","3_3","4_3","5_3","2_4","3_4","4_4","5_4","6_4"],
 				"cellcolor": [123,1,26]
+			},
+			{
+				"cellids": ["4_6"],
+				"cellcolor": [101,52,44]
+			},
+			{
+				"cellids": ["2_5","3_5","4_5","5_5","6_5","2_6","3_6","5_6","6_6"],
+				"cellcolor": [255,54,29]
 			}],
 			"bricks": [
 				{
-					"brickid": "Brick_A",
-					"brickcolor": [0,0,0],
-					"width": 1,
-					"height": 1
-				},
-				{	
-					"brickid": "Brick_A",
-					"brickcolor": [255,255,255],
-					"width": 1,
+					"brickid": "Brick_B",
+					"brickcolor": [255,54,29],
+					"width": 2,
 					"height": 1
 				},
 				{	
@@ -83,10 +203,82 @@
 					"height": 1
 				},
 				{	
-					"brickid": "Brick_C",
-					"brickcolor": [123,1,26],
+					"brickid": "Brick_A",
+					"brickcolor": [101,52,44],
+					"width": 1,
+					"height": 1
+				}
+			]
+		},
+		{
+			"name": "Sonnenuntergang",
+			"level": 2,
+			"cells": [{
+				"cellids": ["2_2","2_4","3_4","5_4","6_4","3_2","4_2","5_2","6_2","2_3","3_3","4_3","5_3","6_3"],
+				"cellcolor": [249,188,145]
+			},
+			{
+				"cellids": ["4_4"],
+				"cellcolor": [255,54,29]
+			},
+			{
+				"cellids": ["2_5","3_5","4_5","5_5","6_5","2_6","3_6","4_6","5_6","6_6"],
+				"cellcolor": [0,0,0]
+			}],
+			"bricks": [
+				{
+					"brickid": "Brick_B",
+					"brickcolor": [255,54,29],
 					"width": 2,
-					"height": 2
+					"height": 1
+				},
+				{	
+					"brickid": "Brick_B",
+					"brickcolor": [0,0,0],
+					"width": 2,
+					"height": 1
+				},
+				{	
+					"brickid": "Brick_A",
+					"brickcolor": [249,54,29],
+					"width": 2,
+					"height": 1
+				}
+			]
+		},
+		{
+			"name": "Ente",
+			"level": 3,
+			"cells": [{
+				"cellids": ["2_2","3_2","4_2","5_2","6_2","2_3","3_3","4_3","5_3","6_3"],
+				"cellcolor": [249,188,145]
+			},
+			{
+				"cellids": ["4_4"],
+				"cellcolor": [255,54,29]
+			},
+			{
+				"cellids": ["2_5","3_5","4_5","5_5","6_5","2_6","3_6","4_6","5_6","6_6"],
+				"cellcolor": [0,0,0]
+			}],
+			"bricks": [
+				{
+					"brickid": "Brick_B",
+					"brickcolor": [255,54,29],
+					"width": 2,
+					"height": 1
+				},
+				{	
+					"brickid": "Brick_B",
+					"brickcolor": [0,0,0],
+					"width": 2,
+					"height": 1
+				},
+				{	
+					"brickid": "Brick_A",
+					"brickcolor": [249,54,29],
+					"width": 2,
+					"height": 1
 				}
 			]
 		}
