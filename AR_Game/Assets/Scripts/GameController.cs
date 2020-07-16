@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     private Timer timer;                                    // Timer für die Steuerung der Zeitanzeige
     private Motives jsonMotives;                            // Motive und ihre Eigenschaften
     private int currentLevel;                               // Aktuelles Level
-    private int currentMotiveIndex;                              // Index des aktuellen Motiv
+    private int currentMotiveIndex;                         // Index des aktuellen Motiv
 
     void Start() {
         // Initialisierung der Variablen
@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
         // Index des aktuellen Motivs setzen
         currentMotiveIndex = index;
+        
         foreach(Cell cell in motive.cells) {
             foreach(string cellid in cell.cellids) {
                 Image image = GameObject.Find(cellid).GetComponent<Image>();

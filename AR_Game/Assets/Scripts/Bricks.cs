@@ -7,7 +7,7 @@ using UnityEngine;
 public class Bricks : MonoBehaviour
 {
     [HideInInspector] public bool isMoving = false;     // Wird der Baustein gerade bewegt?
-    [HideInInspector] public List<GameObject> cells;    // Liste mit Zellen, die aktuell mit dem Baustein kollidieren
+    [HideInInspector] public List<GameObject> cells;    // Liste mit Zellen, die aktuell mit dem Baustein kollidieren              
     Vector3 poiPosition = new Vector3();                // Position des Point of Interest
     Vector3 brickPosition = new Vector3();              // Position des Bausteins 
     
@@ -56,22 +56,7 @@ public class Bricks : MonoBehaviour
         if (triggerGesture == ManoGestureTrigger.CLICK && rectContainsPOI) {
             transform.Rotate(0, 0, 90, Space.Self);
         }
-        // Farbe im Grid zurücksetzen
-        if (triggerGesture == ManoGestureTrigger.RELEASE_GESTURE) {
-            //GameObject.Find("Grid").GetComponent<GridManager>().clearGrid();
-        }
     }
-    /*
-    // Farbe der Zellen im Grid aktualisieren, nachdem der Stein losgelassen wurde
-    void UpdateColorOfCells(List<GameObject> cellList) {
-
-        Color brickColor = gameObject.transform.GetChild(0).GetComponent<Image>().color;
-        foreach(GameObject cell in cellList) 
-            cell.GetComponent<Image>().color = brickColor;
-        
-        // Liste leeren
-        cells.Clear();
-    }*/
 }
 
 

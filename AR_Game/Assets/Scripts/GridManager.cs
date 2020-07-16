@@ -31,13 +31,18 @@ public class GridManager : MonoBehaviour
                 counter++;
             }
         }   
+        SetColorForCells(listOfCells, color);
+
+        // Auswertung, ob die Farben des Steins mit den Farben des Motivs an der Position übereinstimmen
+        // Wenn ja, dann Steine löschen
+        /*
         if(listOfCells.Count == counter) {
-            SetColorForCells(listOfCells, color);
             Debug.Log("Richtig!");
         }
         else {
             Debug.Log("Falsch!"); 
         }
+        */
     }
 
     public void SetColorForCells(List<GameObject> listOfCells, Color color) {
