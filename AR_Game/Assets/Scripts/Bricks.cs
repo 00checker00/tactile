@@ -6,11 +6,10 @@ using UnityEngine;
 // Klasse zum Manipulieren der Bausteine
 public class Bricks : MonoBehaviour
 {
-    public bool isMoving = false;               // Wird der Baustein gerade bewegt?
-    public bool dropped = false;                // Wurde der Baustein abgelegt?
-    Vector3 poiPosition = new Vector3();        // Position des Point of Interest
-    Vector3 brickPosition = new Vector3();      // Position des Bausteins 
-    public List<GameObject> cells;              // Liste mit Zellen, die aktuell mit dem Baustein kollidieren
+    [HideInInspector] public bool isMoving = false;     // Wird der Baustein gerade bewegt?
+    [HideInInspector] public List<GameObject> cells;    // Liste mit Zellen, die aktuell mit dem Baustein kollidieren
+    Vector3 poiPosition = new Vector3();                // Position des Point of Interest
+    Vector3 brickPosition = new Vector3();              // Position des Bausteins 
     
     // Initialisierung
     void Start() {
@@ -21,7 +20,7 @@ public class Bricks : MonoBehaviour
         // Position des POI
         poiPosition = ManomotionManager.Instance.Hand_infos[0].hand_info.tracking_info.poi;
 
-        // PICK und DROP Gesten erkennen
+        // Trigger-Gesten PICK, DROP und CLICK erkennen
         DetectGesture(ManomotionManager.Instance.Hand_infos[0].hand_info.gesture_info.mano_gesture_trigger, ManomotionManager.Instance.Hand_infos[0].hand_info.tracking_info);
         
         // Position des Bausteins aktualisieren und der Hand folgen
@@ -35,43 +34,44 @@ public class Bricks : MonoBehaviour
         }
     }
     
-    // Funktion zur Erkennung des Greifens und des Loslassens eines Bausteins (PICK und DROP)
+    // Funktion zur Erkennung des Greifens und des Loslassens eines Bausteins (PICK, DROP, CLICK, RELEASE)
     void DetectGesture(ManoGestureTrigger triggerGesture, TrackingInfo trackingInfo)
     {
         // Test, ob der POI im Bereich des Bausteins liegt
         bool rectContainsPOI = RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Camera.main.ViewportToScreenPoint(poiPosition)); 
 
-        // Wurde eine Geste ausgeführt
-        if (triggerGesture != ManoGestureTrigger.NO_GESTURE) {
-
-            // Baustein greifen 
-            if (triggerGesture == ManoGestureTrigger.PICK && rectContainsPOI) {
-                isMoving = true;
-            }
-            // Baustein loslassen
-            if (triggerGesture == ManoGestureTrigger.DROP && isMoving) {
-                isMoving = false;
-                transform.position = brickPosition;
-                UpdateColorOfCells(cells);
-            }
-            // Baustein rotieren (Bei jedem Click 90° um die eigene Achse Z)
-            if (triggerGesture == ManoGestureTrigger.CLICK && rectContainsPOI) {
-                transform.Rotate(0, 0, 90, Space.Self);
-            }
+        // Baustein greifen 
+        if (triggerGesture == ManoGestureTrigger.PICK && rectContainsPOI) {
+            isMoving = true;
+        }
+        // Baustein loslassen
+        if (triggerGesture == ManoGestureTrigger.DROP && isMoving) {
+            isMoving = false;
+            transform.position = brickPosition;
+            // Prüfen, ob die Farben des abgelegten Bausteins zum Motiv passen
+            GameObject.Find("Grid").GetComponent<GridManager>().EvaluateColorForCells(cells, gameObject.transform.GetChild(0).GetComponent<Image>().color);
+            cells.Clear();
+        }
+        // Baustein rotieren (Bei jedem Click 90° um die eigene Achse Z)
+        if (triggerGesture == ManoGestureTrigger.CLICK && rectContainsPOI) {
+            transform.Rotate(0, 0, 90, Space.Self);
+        }
+        // Farbe im Grid zurücksetzen
+        if (triggerGesture == ManoGestureTrigger.RELEASE_GESTURE) {
+            //GameObject.Find("Grid").GetComponent<GridManager>().clearGrid();
         }
     }
-
+    /*
     // Farbe der Zellen im Grid aktualisieren, nachdem der Stein losgelassen wurde
-    void UpdateColorOfCells(List<GameObject> listOfCells) {
+    void UpdateColorOfCells(List<GameObject> cellList) {
+
         Color brickColor = gameObject.transform.GetChild(0).GetComponent<Image>().color;
-        int count = 0;
-        foreach(GameObject cell in listOfCells) {
+        foreach(GameObject cell in cellList) 
             cell.GetComponent<Image>().color = brickColor;
-            count++;
-        }
+        
         // Liste leeren
         cells.Clear();
-    }
+    }*/
 }
 
 

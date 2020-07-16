@@ -7,14 +7,14 @@ using UnityEngine.UI;
 // Level, Timer, Texteinblendungen, Gridzustände, Gridauswertung
 public class GameController : MonoBehaviour
 {
-    public List<GameObject> prefabs;    // Prefabs der Bausteine zum Erstellen von Instanzen
-    public List<GameObject> brickList;  // Liste zum Verwalten der sichtbaren Bausteine
-    private GameObject reader;          // Variable für den Zugriff auf die Motiv-Daten
-    private GameObject grid;            // Variable für Zugriff auf das Gitter und dessen Zellen
-    private Timer timer;                // Timer für die Steuerung der Zeitanzeige
-    private Motives jsonMotives;        // Motive und ihre Eigenschaften
-    private int currentLevel;           // Aktuelles Level
-    private int currentMotive;          // Index des aktuellen Motiv
+    public List<GameObject> prefabs;                        // Prefabs der Bausteine zum Erstellen von Instanzen
+    [HideInInspector] public List<GameObject> brickList;    // Liste zum Verwalten der sichtbaren Bausteine
+    private GameObject reader;                              // Variable für den Zugriff auf die Motiv-Daten
+    private GameObject grid;                                // Variable für Zugriff auf das Gitter und dessen Zellen
+    private Timer timer;                                    // Timer für die Steuerung der Zeitanzeige
+    private Motives jsonMotives;                            // Motive und ihre Eigenschaften
+    private int currentLevel;                               // Aktuelles Level
+    private int currentMotiveIndex;                              // Index des aktuellen Motiv
 
     void Start() {
         // Initialisierung der Variablen
@@ -22,62 +22,77 @@ public class GameController : MonoBehaviour
         reader = GameObject.Find("JSONReader");
         grid = GameObject.Find("Grid");
         timer = GameObject.Find("TimerLabel").GetComponent<Timer>();
-
+        
         // Erstes Motiv einblenden
-        currentMotive = 0;
-        displayMotive(0);
+        currentMotiveIndex = 0;
+        DisplayMotive(0);
     }
 
     void Update() {
         // Timer für das Merken des Motivs überwachen
         if(timer.displayTimerExpired) {
             timer.displayTimerExpired = false;
-            hideMotive(currentMotive);
-            swapBricksForMotive(currentMotive);
+            HideMotive(currentMotiveIndex);
+            SwapBricksForMotive(currentMotiveIndex);
         }
         // Timer für das Bauen des Motivs überwachen
         if(timer.buildTimerExpired) {
             timer.buildTimerExpired = false;
-            currentMotive++;
-            grid.GetComponent<GridManager>().clearGrid();
-            displayMotive(currentMotive);
+            currentMotiveIndex++;
+
+            // Grid zurücksetzen
+            grid.GetComponent<GridManager>().currentMotiveCells.Clear();
+            grid.GetComponent<GridManager>().completedCells.Clear();
+            grid.GetComponent<GridManager>().ClearGrid();
+            DisplayMotive(currentMotiveIndex);
+        }
+
+        // Nächstes Motiv anzeigen
+        if(grid.GetComponent<GridManager>().currentMotiveCells.Count == 
+           grid.GetComponent<GridManager>().completedCells.Count) {
         }
     }
 
     // Aktuelles Motiv aus den JSON-Daten holen und anzeigen
-    void displayMotive(int index) {
-        currentMotive = index;
+    void DisplayMotive(int index) {
+        // Baustein-Liste leeren
+        ClearBrickList(brickList);
+        // Motivdaten abholen
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
-        
+
+        // Index des aktuellen Motivs setzen
+        currentMotiveIndex = index;
         foreach(Cell cell in motive.cells) {
             foreach(string cellid in cell.cellids) {
-                GameObject.Find(cellid).GetComponent<Image>().color = new Color32((byte)cell.cellcolor[0], 
-                                                                                  (byte)cell.cellcolor[1], 
-                                                                                  (byte)cell.cellcolor[2], 255);
-                Debug.Log(GameObject.Find(cellid).GetComponent<Image>().color);
+                Image image = GameObject.Find(cellid).GetComponent<Image>();
+                image.color = new Color32((byte)cell.cellcolor[0], (byte)cell.cellcolor[1], (byte)cell.cellcolor[2], 255);
+                grid.GetComponent<GridManager>().currentMotiveCells.Add(cellid, image.color);                                                                  
             }
         }
-        clearBrickList(brickList);
-        updateNotes("Motiv " + motive.name + " merken!");
-        updateLevel(motive.level);
+        UpdateNotes("Motiv " + motive.name + " merken!");
+        UpdateLevel(motive.level);
     }
     
     // Aktuelles Motiv verschwinden lassen
-    void hideMotive(int index) {
+    void HideMotive(int index) {
+
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
+
         foreach(Cell cell in motive.cells) 
             foreach(string cellid in cell.cellids)
                 GameObject.Find(cellid).GetComponent<Image>().color = grid.GetComponent<GridManager>().cellColor;
 
-        updateNotes("Motiv " + motive.name + " bauen!");
+        UpdateNotes("Motiv " + motive.name + " bauen!");
     }
 
     // Steine für aktuelles Motiv instanziieren und anzeigen lassen
-    void swapBricksForMotive(int index) {
+    void SwapBricksForMotive(int index) {
+
         Motive motive = jsonMotives.motives[index];
         int yPosition = 100;
+
         for(int i = 0; i < motive.bricks.Count; i++) {
             GameObject obj = prefabs.Find((x) => x.name == motive.bricks[i].brickid);           
             GameObject prefab = Instantiate(obj, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("Canvas").transform);            
@@ -94,20 +109,20 @@ public class GameController : MonoBehaviour
     }
     
     // Level-Label aktualisieren
-    void updateLevel(int level) {
+    void UpdateLevel(int level) {
         GameObject.Find("LevelLabel").GetComponent<Text>().text = "Level " + level;
     }
 
     // Hinweis-Label aktualisieren
-    void updateNotes(string notes) {
+    void UpdateNotes(string notes) {
         GameObject.Find("NotesLabel").GetComponent<Text>().text = notes;
     }
 
-    // Liste mit den Bausteinen leeren für die Bausteine des nächsten Motivs
-    void clearBrickList(List<GameObject> list) {
+    // Liste mit den Bausteinen leeren für Bausteine des nächsten Motivs
+    void ClearBrickList(List<GameObject> list) {
         foreach(GameObject obj in list) 
             GameObject.Destroy(obj);
-
+        
         brickList.Clear();
     }
 }

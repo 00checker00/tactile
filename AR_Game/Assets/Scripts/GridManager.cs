@@ -2,35 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
-// Verwaltung des Grids:
+// Klasse zur Verwaltung des Grids:
 // - Kacheln ein- und ausblenden
-// - Farben anpassen
+// - Farben anktualisieren
+// - Farbe auf den Ursprungszustand zurücksetzen
 public class GridManager : MonoBehaviour
 {
     public Color cellColor;
+    [HideInInspector] public bool isMotiveReady;
+    [HideInInspector] public bool isBrickCorrect;
+    [HideInInspector] public Dictionary<string, Color> currentMotiveCells;
+    [HideInInspector] public Dictionary<string, Color> completedCells;
+
     void Awake() {
-        clearGrid();
+        ClearGrid();
+        currentMotiveCells = new Dictionary<string, Color>();
+        completedCells = new Dictionary<string, Color>();
     }
 
-    //fixen
-    public void hideGrid() {
-        foreach (RectTransform child in transform)
-            child.gameObject.SetActive(false);
+    public void EvaluateColorForCells(List<GameObject> listOfCells, Color color) {
+        int counter = 0;
+        foreach(GameObject currentCell in listOfCells) {  
+            KeyValuePair<string, Color> pair = new KeyValuePair<string, Color>(currentCell.name, color);
+            if(currentMotiveCells.Contains(pair) && !completedCells.Contains(pair)) {
+                completedCells.Add(pair.Key, pair.Value);
+                counter++;
+            }
+        }   
+        if(listOfCells.Count == counter) {
+            SetColorForCells(listOfCells, color);
+            Debug.Log("Richtig!");
+        }
+        else {
+            Debug.Log("Falsch!"); 
+        }
     }
 
-    public void clearGrid() {
+    public void SetColorForCells(List<GameObject> listOfCells, Color color) {
+        foreach(GameObject cell in listOfCells) 
+            cell.GetComponent<Image>().color = color;
+    }
+
+    public void ClearGrid() {
         foreach(Transform child in transform) {
             child.gameObject.GetComponent<Image>().color = cellColor;
         }
-    }
-    // Motiv zum Merken anzeigen
-    void displayMotiveInGrid() {
-
-    }
-
-    // Motiv ausblenden
-    void hideMotiveInGrid() {
-
     }
 }
