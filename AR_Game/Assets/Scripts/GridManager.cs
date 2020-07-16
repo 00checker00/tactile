@@ -26,23 +26,20 @@ public class GridManager : MonoBehaviour
         int counter = 0;
         foreach(GameObject currentCell in listOfCells) {  
             KeyValuePair<string, Color> pair = new KeyValuePair<string, Color>(currentCell.name, color);
-            if(currentMotiveCells.Contains(pair) && !completedCells.Contains(pair)) {
-                completedCells.Add(pair.Key, pair.Value);
+            if(currentMotiveCells.Contains(pair)) 
                 counter++;
-            }
+            if(!completedCells.Contains(pair)) 
+                completedCells.Add(pair.Key, pair.Value);
+            
         }   
-        SetColorForCells(listOfCells, color);
-
         // Auswertung, ob die Farben des Steins mit den Farben des Motivs an der Position übereinstimmen
-        // Wenn ja, dann Steine löschen
-        /*
         if(listOfCells.Count == counter) {
+            SetColorForCells(listOfCells, color);
             Debug.Log("Richtig!");
         }
         else {
             Debug.Log("Falsch!"); 
         }
-        */
     }
 
     public void SetColorForCells(List<GameObject> listOfCells, Color color) {

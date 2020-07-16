@@ -218,7 +218,7 @@
 			"bricks": [
 				{
 					"brickid": "Brick_B",
-					"brickcolor": [255,54,29],
+					"brickcolor": [249,188,149],
 					"width": 2,
 					"height": 1
 				},
@@ -230,7 +230,7 @@
 				},
 				{	
 					"brickid": "Brick_A",
-					"brickcolor": [249,188,149],
+					"brickcolor": [255,54,29],
 					"width": 2,
 					"height": 1
 				}
