@@ -43,8 +43,6 @@ public class GameController : MonoBehaviour
             // Grid zurücksetzen
             grid.GetComponent<GridManager>().currentMotiveCells.Clear();
             grid.GetComponent<GridManager>().completedCells.Clear();
-            grid.GetComponent<GridManager>().ClearGrid();
-            grid.GetComponent<GridManager>().HideUnusedCells();
             DisplayMotive(currentMotiveIndex);
         }
 
@@ -58,6 +56,9 @@ public class GameController : MonoBehaviour
     void DisplayMotive(int index) {
         // Baustein-Liste leeren
         ClearBrickList(brickList);
+        // Grid zurücksetzen
+        grid.GetComponent<GridManager>().ClearGrid();
+        grid.GetComponent<GridManager>().HideUnusedCells();
         // Motivdaten abholen
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
