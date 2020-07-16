@@ -38,7 +38,7 @@ public class GridManager : MonoBehaviour
             Debug.Log("Richtig!");
         }
         else {
-            Debug.Log("Falsch!"); 
+            ManoEvents.Instance.DisplayLogMessage("Das war falsch!");
         }
     }
 
@@ -49,7 +49,25 @@ public class GridManager : MonoBehaviour
 
     public void ClearGrid() {
         foreach(Transform child in transform) {
-            child.gameObject.GetComponent<Image>().color = cellColor;
+            //child.gameObject.GetComponent<Image>().color = cellColor;
+            Color color = new Color();
+            color = child.gameObject.GetComponent<Image>().color;
+            color.a = 0.5f;
+            child.gameObject.GetComponent<Image>().color = color;
+        }
+    }
+
+    public void HideUnusedCells() {
+        foreach(Transform child in transform) {
+            if(!currentMotiveCells.ContainsKey(child.gameObject.name)) {
+                Color color = new Color();
+                color = child.gameObject.GetComponent<Image>().color;
+                color.a = 0.0f;
+                child.gameObject.GetComponent<Image>().color = color;
+            }
+            else {
+                child.gameObject.GetComponent<Image>().color = cellColor;
+            }
         }
     }
 }

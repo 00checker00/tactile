@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour
             grid.GetComponent<GridManager>().currentMotiveCells.Clear();
             grid.GetComponent<GridManager>().completedCells.Clear();
             grid.GetComponent<GridManager>().ClearGrid();
+            grid.GetComponent<GridManager>().HideUnusedCells();
             DisplayMotive(currentMotiveIndex);
         }
 
