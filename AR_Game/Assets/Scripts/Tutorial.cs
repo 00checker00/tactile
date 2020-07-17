@@ -95,21 +95,46 @@ public class Tutorial : MonoBehaviour
         clickText.SetActive(false);
         clickSprite.SetActive(false);
 
-        StartCoroutine(EndTutorial());
+        StartCoroutine(EndTutorialAsync());
+        //EndTutorial();
+
+    }
+
+    // End tutorial and load scene with game
+
+    private void EndTutorial()
+    {
+        // Loading next scene based on build index
+        SceneManager.LoadScene(1);
+
+        // Loading next scene based on name
+        //if (gameScene != null)
+        //{
+        //    SceneManager.LoadScene(gameScene.name);
+        //}
     }
 
     // End tutorial and load scene with game asynchronously in the background
-    private IEnumerator EndTutorial()
+    private IEnumerator EndTutorialAsync()
     {
-        Debug.Log("Scene name: " + gameScene.name);
-        if (gameScene != null)
-        {
-            AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync(gameScene.name);
+        // Loading next scene based on build index
+        AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync(1);
 
-            while (!asyncSceneLoad.isDone)
-            {
-                yield return null;
-            }
+        while (!asyncSceneLoad.isDone)
+        {
+            yield return null;
         }
+
+        // Loading next scene based on name
+        //Debug.Log("Scene name: " + gameScene.name);
+        //if (gameScene != null)
+        //{
+        //    AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync(gameScene.name);
+
+        //    while (!asyncSceneLoad.isDone)
+        //    {
+        //        yield return null;
+        //    }
+        //}
     }
 }
