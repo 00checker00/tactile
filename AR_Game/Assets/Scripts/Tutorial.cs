@@ -8,6 +8,7 @@ public class Tutorial : MonoBehaviour
     [Space(10)]
     [Header("General")]
     public float waitBetweenSteps = 0.5f;
+    public GameObject skipTutorialButton;
 
     [Space(10)]
     [Header("Introduction")]
@@ -37,8 +38,6 @@ public class Tutorial : MonoBehaviour
     public Object gameScene;
     */
 
-    // TODO: Button to skip tutorial
-
     private void Start()
     {
         // Deactivate all tutorial items (children of tutorial master) first
@@ -56,6 +55,8 @@ public class Tutorial : MonoBehaviour
     private IEnumerator StartIntroduction()
     {
         int countIntroText = 0;
+
+        skipTutorialButton.SetActive(true);
 
         // Loading introduction text elements one by one.
         foreach (GameObject obj in introductionText)
@@ -90,7 +91,6 @@ public class Tutorial : MonoBehaviour
 
     private IEnumerator ExplainPinch()
     {
-        Debug.Log("Explaining pinch.");
         pinchText.SetActive(true);
         pinchSprite.SetActive(true);
 
@@ -105,7 +105,6 @@ public class Tutorial : MonoBehaviour
 
     private IEnumerator ExplainClick()
     {
-        Debug.Log("Explaining click.");
         clickText.SetActive(true);
         clickSprite.SetActive(true);
 
@@ -122,9 +121,25 @@ public class Tutorial : MonoBehaviour
         //EndTutorial();
     }
 
-    // End tutorial and load scene with game
+    public void SkipTutorial()
+    {
+        // Deactivate all tutorial items (children of tutorial master)
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var child = transform.GetChild(i).gameObject;
+            if (child != null)
+                child.SetActive(false);
+        }
+
+        StartCoroutine(EndTutorialAsync());
+    }
+
+    // End tutorial and load scene with game 
+    // *currently not in use*
     private void EndTutorial()
     {
+        skipTutorialButton.SetActive(false);
+
         // Loading next scene based on build index
         SceneManager.LoadScene(1);
 
@@ -139,6 +154,8 @@ public class Tutorial : MonoBehaviour
     // End tutorial and load scene with game asynchronously in the background
     private IEnumerator EndTutorialAsync()
     {
+        skipTutorialButton.SetActive(false);
+
         // Loading next scene based on build index
         AsyncOperation asyncSceneLoad = SceneManager.LoadSceneAsync(1);
 
