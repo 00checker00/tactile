@@ -576,7 +576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.493958, y: 181.09933}
+  m_AnchoredPosition: {x: -32.493958, y: 185}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &187477573
@@ -1359,7 +1359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.493958, y: 181.0993}
+  m_AnchoredPosition: {x: -26, y: 181.0993}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &310700774
@@ -1396,12 +1396,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_Font: {fileID: 12800000, guid: b4f805873fc7ed44280e3fb48560a15e, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 300
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1452,7 +1452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.493958, y: 98.98544}
+  m_AnchoredPosition: {x: -26, y: 95}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &384859894
@@ -1626,8 +1626,9 @@ GameObject:
   - component: {fileID: 436830400}
   - component: {fileID: 436830402}
   - component: {fileID: 436830401}
+  - component: {fileID: 436830403}
   m_Layer: 0
-  m_Name: PinchImage
+  m_Name: ClickImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1645,11 +1646,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1989621087}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -32.7, y: 0}
   m_SizeDelta: {x: 175, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &436830401
@@ -1689,6 +1690,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436830399}
   m_CullTransparentMesh: 0
+--- !u!95 &436830403
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436830399}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4979320607092e4891eb8891281d599, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &545308669
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,13 +2303,14 @@ GameObject:
   - component: {fileID: 649234489}
   - component: {fileID: 649234491}
   - component: {fileID: 649234490}
+  - component: {fileID: 649234492}
   m_Layer: 0
-  m_Name: ClickImage
+  m_Name: PinchImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &649234489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2302,11 +2323,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1989621087}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -32.7, y: 0}
   m_SizeDelta: {x: 175, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649234490
@@ -2346,6 +2367,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649234488}
   m_CullTransparentMesh: 0
+--- !u!95 &649234492
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649234488}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a32141f9033176a45b81c6a82e4fe2dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &746634142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,7 +2522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &758320181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2499,7 +2539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.493958, y: 181.0993}
+  m_AnchoredPosition: {x: -26, y: 181.0993}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &758320182
@@ -4374,7 +4414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.493958, y: 140.04242}
+  m_AnchoredPosition: {x: -26, y: 140}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1357876902
@@ -4548,7 +4588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.493958, y: 57.928436}
+  m_AnchoredPosition: {x: -26, y: 50}
   m_SizeDelta: {x: 500, y: 240}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1391094945
@@ -6714,10 +6754,10 @@ Transform:
   - {fileID: 1391094944}
   - {fileID: 758320181}
   - {fileID: 1139688604}
-  - {fileID: 436830400}
+  - {fileID: 649234489}
   - {fileID: 310700773}
   - {fileID: 1370441058}
-  - {fileID: 649234489}
+  - {fileID: 436830400}
   m_Father: {fileID: 260785485060396897}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6740,10 +6780,10 @@ MonoBehaviour:
   - {fileID: 1391094943}
   textDisplayTime: 4
   pinchText: {fileID: 758320180}
-  pinchSprite: {fileID: 436830399}
+  pinchSprite: {fileID: 649234488}
   pinchDisplayTime: 10
   clickText: {fileID: 310700772}
-  clickSprite: {fileID: 649234488}
+  clickSprite: {fileID: 436830399}
   clickDisplayTime: 10
   gameScene: {fileID: 102900000, guid: 4e8129e18d45f4ffbbe8ca9a54bfbdd9, type: 3}
 --- !u!1 &1991595876
