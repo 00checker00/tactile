@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     // Timer für das Anzeigen und Merken des Motives
-    public double displayTime = 10.0;
-    public bool displayTimerRunning = false;
-    public bool displayTimerExpired = false;
+    [HideInInspector] public double displayTime = 10.0;
+    [HideInInspector] public bool displayTimerRunning = false;
+    [HideInInspector] public bool displayTimerExpired = false;
 
     // Timer für das Nachbauen des Motivs
-    public double buildTime = 60.0;
-    public bool buildTimerRunning = false;
-    public bool buildTimerExpired = false;
+    [HideInInspector] public double buildTime = 60.0;
+    [HideInInspector] public bool buildTimerRunning = false;
+    [HideInInspector] public bool buildTimerExpired = false;
 
     void Start() {
         startDisplayTimer();

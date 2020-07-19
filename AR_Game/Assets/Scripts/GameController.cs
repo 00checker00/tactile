@@ -47,8 +47,11 @@ public class GameController : MonoBehaviour
         }
 
         // Nächstes Motiv anzeigen
-        if(grid.GetComponent<GridManager>().currentMotiveCells.Count == 
-           grid.GetComponent<GridManager>().completedCells.Count) {
+        if(grid.GetComponent<GridManager>().isMotiveReady) {
+            timer.stopBuildTimer();
+            timer.startDisplayTimer();
+            grid.GetComponent<GridManager>().completedCells.Clear();
+            grid.GetComponent<GridManager>().isMotiveReady = false;
         }
     }
 

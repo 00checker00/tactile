@@ -5550,7 +5550,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellColor: {r: 0, g: 0, b: 0, a: 0.39215687}
   isMotiveReady: 0
-  isBrickCorrect: 0
 --- !u!1 &1714155695
 GameObject:
   m_ObjectHideFlags: 0
@@ -6986,7 +6985,7 @@ PrefabInstance:
     - target: {fileID: 114578675002002822, guid: 84b17eee54c744578b650ff304284bda,
         type: 3}
       propertyPath: _showDropTriggerGesture
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114578675002002822, guid: 84b17eee54c744578b650ff304284bda,
         type: 3}

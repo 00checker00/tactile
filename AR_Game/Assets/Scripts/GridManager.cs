@@ -12,7 +12,6 @@ public class GridManager : MonoBehaviour
 {
     public Color cellColor;
     [HideInInspector] public bool isMotiveReady;
-    [HideInInspector] public bool isBrickCorrect;
     [HideInInspector] public Dictionary<string, Color> currentMotiveCells;
     [HideInInspector] public Dictionary<string, Color> completedCells;
 
@@ -20,6 +19,12 @@ public class GridManager : MonoBehaviour
         ClearGrid();
         currentMotiveCells = new Dictionary<string, Color>();
         completedCells = new Dictionary<string, Color>();
+        isMotiveReady = false;
+    }
+
+    void Update() {
+        if(currentMotiveCells.Count == completedCells.Count)
+            isMotiveReady = true;
     }
 
     public void EvaluateColorForCells(List<GameObject> listOfCells, Color color) {
@@ -35,10 +40,10 @@ public class GridManager : MonoBehaviour
         // Auswertung, ob die Farben des Steins mit den Farben des Motivs an der Position übereinstimmen
         if(listOfCells.Count == counter) {
             SetColorForCells(listOfCells, color);
-            Debug.Log("Richtig!");
+            ManoEvents.Instance.DisplayLogMessage("Richtig!");
         }
         else {
-            ManoEvents.Instance.DisplayLogMessage("Das war falsch!");
+            ManoEvents.Instance.DisplayLogMessage("Falsch!");
         }
     }
 
