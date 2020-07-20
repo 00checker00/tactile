@@ -23,24 +23,28 @@ public class GridManager : MonoBehaviour
     }
 
     void Update() {
-        if(currentMotiveCells.Count == completedCells.Count)
+        if(currentMotiveCells.Count == completedCells.Count) {
             isMotiveReady = true;
+            ManoEvents.Instance.DisplayLogMessage("Richtig!");
+        }
     }
 
     public void EvaluateColorForCells(List<GameObject> listOfCells, Color color) {
         int counter = 0;
         foreach(GameObject currentCell in listOfCells) {  
             KeyValuePair<string, Color> pair = new KeyValuePair<string, Color>(currentCell.name, color);
-            if(currentMotiveCells.Contains(pair)) 
+            if(currentMotiveCells.Contains(pair)) {
                 counter++;
-            if(!completedCells.Contains(pair)) 
-                completedCells.Add(pair.Key, pair.Value);
-            
-        }   
+                if(!completedCells.Contains(pair))
+                    completedCells.Add(pair.Key, pair.Value);
+            }
+        }
+        Debug.Log("listOfCells: " + listOfCells.Count);
+        Debug.Log("counter: " + counter);
+
         // Auswertung, ob die Farben des Steins mit den Farben des Motivs an der Position übereinstimmen
         if(listOfCells.Count == counter) {
             SetColorForCells(listOfCells, color);
-            ManoEvents.Instance.DisplayLogMessage("Richtig!");
         }
         else {
             ManoEvents.Instance.DisplayLogMessage("Falsch!");
@@ -54,7 +58,6 @@ public class GridManager : MonoBehaviour
 
     public void ClearGrid() {
         foreach(Transform child in transform) {
-            //child.gameObject.GetComponent<Image>().color = cellColor;
             Color color = new Color();
             color = child.gameObject.GetComponent<Image>().color;
             color.a = 0.5f;
