@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Masterszene.unity
-    guid: b409100b9e7254827a2dbed15434d642
+    guid: b422575eeb0774d9e9e4fc6ac5365b48
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 4fc37c473abac4e578da740a88bdbc5f,
       type: 2}
