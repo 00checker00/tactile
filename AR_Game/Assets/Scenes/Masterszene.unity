@@ -4057,7 +4057,6 @@ GameObject:
   - component: {fileID: 1065465262}
   - component: {fileID: 1065465261}
   - component: {fileID: 1065465260}
-  - component: {fileID: 1065465259}
   - component: {fileID: 1065465263}
   m_Layer: 5
   m_Name: WillkommenLabel
@@ -4066,24 +4065,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1065465259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065465258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 852a11d157b1c49d2b7ec3def7596761, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayTime: 10
-  displayTimerRunning: 0
-  displayTimerExpired: 0
-  buildTime: 60
-  buildTimerRunning: 0
-  buildTimerExpired: 0
 --- !u!114 &1065465260
 MonoBehaviour:
   m_ObjectHideFlags: 0
