@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+// Klassen zum Auslesen der JSON-Datei in eine Datenstruktur
+
 // Zellen des Grids mit der gleichen Farbe
 [System.Serializable]
 public class Cell {

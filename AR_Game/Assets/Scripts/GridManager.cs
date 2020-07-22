@@ -10,11 +10,12 @@ using System.Linq;
 // - Farbe auf den Ursprungszustand zurücksetzen
 public class GridManager : MonoBehaviour
 {
-    public Color cellColor;
-    [HideInInspector] public bool isMotiveReady;
-    [HideInInspector] public Dictionary<string, Color> currentMotiveCells;
-    [HideInInspector] public Dictionary<string, Color> completedCells;
+    public Color cellColor;                                                     // Ausgangsfarbe der Zellen im Grid
+    [HideInInspector] public bool isMotiveReady;                                // Wurde das Motiv komplett nachgebaut?
+    [HideInInspector] public Dictionary<string, Color> currentMotiveCells;      // Alle Zellen des Grids, die für das aktuelle Motiv benötigt werden
+    [HideInInspector] public Dictionary<string, Color> completedCells;          // Fertig gestellte Teile (Zellen) des Motivs
 
+    // Initialisierung der Variablen
     void Awake() {
         ClearGrid();
         currentMotiveCells = new Dictionary<string, Color>();
@@ -22,6 +23,8 @@ public class GridManager : MonoBehaviour
         isMotiveReady = false;
     }
 
+    // Abfrage, ob das Motiv fertiggestellt wurde
+    // Nach Fertigstellung wird eine Nachricht anzeigt
     void Update() {
         if(currentMotiveCells.Count == completedCells.Count) {
             isMotiveReady = true;
@@ -29,7 +32,15 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    // Prüfen, ob die Farbe des gelegten Bausteins mit der Farbe des Motivs übereinstimmt
     public void EvaluateColorForCells(List<GameObject> listOfCells, Color color) {
+        // Wurde ein Stein auf einen anderen Stein gelegt?
+        foreach(GameObject currentCell in listOfCells) { 
+            if(!currentCell.GetComponent<Image>().color.Equals(cellColor)) 
+                return;
+        }
+
+        // Wenn der abgelegte Baustein zum Motiv gehört, dann speichere ihn für die Überwachung des Fortschritts
         int counter = 0;
         foreach(GameObject currentCell in listOfCells) {  
             KeyValuePair<string, Color> pair = new KeyValuePair<string, Color>(currentCell.name, color);
@@ -39,10 +50,9 @@ public class GridManager : MonoBehaviour
                     completedCells.Add(pair.Key, pair.Value);
             }
         }
-        Debug.Log("listOfCells: " + listOfCells.Count);
-        Debug.Log("counter: " + counter);
 
-        // Auswertung, ob die Farben des Steins mit den Farben des Motivs an der Position übereinstimmen
+        // Wenn die Farben des Bausteins zu den Kacheln im Grid passen, dann färbe das Grid um
+        // Ansonsten färbe nicht um und zeige dem User einen Hinweis 
         if(listOfCells.Count == counter) {
             SetColorForCells(listOfCells, color);
         }
@@ -51,11 +61,13 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    // Farbe der Zellen im Grid nach Ablegen eines Bausteins in die Farbe des Bausteins ändern
     public void SetColorForCells(List<GameObject> listOfCells, Color color) {
         foreach(GameObject cell in listOfCells) 
             cell.GetComponent<Image>().color = color;
     }
 
+    // Farbe aller Zellen im Grid zurücksetzen
     public void ClearGrid() {
         foreach(Transform child in transform) {
             Color color = new Color();
@@ -65,6 +77,8 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    // Zellen des Grids dynamisch an das aktuelle Motiv anpassen
+    // Nur die notwendigen Zellen einblenden und alle anderen verbergen 
     public void HideUnusedCells() {
         foreach(Transform child in transform) {
             if(!currentMotiveCells.ContainsKey(child.gameObject.name)) {

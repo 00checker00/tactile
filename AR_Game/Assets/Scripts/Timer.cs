@@ -21,7 +21,6 @@ public class Timer : MonoBehaviour
     }
 
     void Update() {
-        //Debug.Log("DisplayTime: " + displayTime + " BuildTime: " + buildTime + " BuildTimerRunning: " + buildTimerRunning);
         if(displayTimerRunning) {
             displayTime -= Time.deltaTime;
             this.gameObject.GetComponent<Text>().text = System.Convert.ToInt32(displayTime).ToString();

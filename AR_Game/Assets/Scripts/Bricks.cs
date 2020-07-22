@@ -50,6 +50,7 @@ public class Bricks : MonoBehaviour
             transform.position = brickPosition;
             // Prüfen, ob die Farben des abgelegten Bausteins zum Motiv passen
             GameObject.Find("Grid").GetComponent<GridManager>().EvaluateColorForCells(cells, gameObject.transform.GetChild(0).GetComponent<Image>().color);
+            // Zellen entfernen für den nächsten Spielzug
             cells.Clear();
         }
         // Baustein rotieren (Bei jedem Click 90° um die eigene Achse Z)

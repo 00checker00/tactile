@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     private Timer timer;                                    // Timer für die Steuerung der Zeitanzeige
     private Motives jsonMotives;                            // Motive und ihre Eigenschaften
     private int currentLevel;                               // Aktuelles Level
-    private int currentMotiveIndex;                         // Index des aktuellen Motiv
+    private int currentMotiveIndex;                         // Index des aktuellen Motivs
 
     void Start() {
         // Initialisierung der Variablen
@@ -23,8 +23,9 @@ public class GameController : MonoBehaviour
         grid = GameObject.Find("Grid");
         timer = GameObject.Find("TimerLabel").GetComponent<Timer>();
         
-        // Erstes Motiv einblenden
         currentMotiveIndex = 0;
+
+        // Erstes Motiv einblenden
         DisplayMotive(0);
     }
 
@@ -38,7 +39,6 @@ public class GameController : MonoBehaviour
         // Timer für das Bauen des Motivs überwachen
         if(timer.buildTimerExpired) {
             timer.buildTimerExpired = false;
-            currentMotiveIndex++;
 
             // Grid zurücksetzen
             grid.GetComponent<GridManager>().currentMotiveCells.Clear();
@@ -46,8 +46,9 @@ public class GameController : MonoBehaviour
             DisplayMotive(currentMotiveIndex);
         }
 
-        // Nächstes Motiv anzeigen
+        // Timer zurücksetzen, nachdem das Motiv gelöst wurde
         if(grid.GetComponent<GridManager>().isMotiveReady) {
+            currentMotiveIndex++;
             timer.stopBuildTimer();
             timer.startDisplayTimer();
             grid.GetComponent<GridManager>().completedCells.Clear();
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviour
 
     // Aktuelles Motiv aus den JSON-Daten holen und anzeigen
     void DisplayMotive(int index) {
+
         // Baustein-Liste leeren
         ClearBrickList(brickList);
         // Grid zurücksetzen
@@ -65,7 +67,6 @@ public class GameController : MonoBehaviour
         // Motivdaten abholen
         jsonMotives = reader.GetComponent<JSONReader>().motivesInJson;
         Motive motive = jsonMotives.motives[index];
-
         // Index des aktuellen Motivs setzen
         currentMotiveIndex = index;
         
@@ -76,7 +77,10 @@ public class GameController : MonoBehaviour
                 grid.GetComponent<GridManager>().currentMotiveCells.Add(cellid, image.color);                                                                  
             }
         }
-        UpdateNotes("Motiv " + motive.name + " merken!");
+        Debug.Log("index :" + index);
+        Debug.Log("motives :" + jsonMotives.motives.Count);
+
+        UpdateNotes("Merke dir das Motiv " + motive.name + "!");
         UpdateLevel(motive.level);
     }
     
@@ -90,22 +94,22 @@ public class GameController : MonoBehaviour
             foreach(string cellid in cell.cellids)
                 GameObject.Find(cellid).GetComponent<Image>().color = grid.GetComponent<GridManager>().cellColor;
 
-        UpdateNotes("Motiv " + motive.name + " bauen!");
+        UpdateNotes("Baue das Motiv " + motive.name + " nach!");
     }
 
     // Steine für aktuelles Motiv instanziieren und anzeigen lassen
     void SwapBricksForMotive(int index) {
 
         Motive motive = jsonMotives.motives[index];
-        int yPosition = 100;
+        int yPosition = 170;
 
         for(int i = 0; i < motive.bricks.Count; i++) {
             GameObject obj = prefabs.Find((x) => x.name == motive.bricks[i].brickid);           
             GameObject prefab = Instantiate(obj, new Vector3(0, 0, 0), Quaternion.identity, GameObject.Find("Canvas").transform);            
             RectTransform rt = prefab.GetComponent<RectTransform>();
-            //float height = GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height;
+            float height = GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height;
             rt.anchoredPosition = new Vector3(-355, yPosition, 0); 
-            yPosition -= 100;
+            yPosition -= 110;
             foreach(Transform child in prefab.transform) 
                 child.GetComponent<Image>().color = new Color32((byte)motive.bricks[i].brickcolor[0], 
                                                                 (byte)motive.bricks[i].brickcolor[1], 
