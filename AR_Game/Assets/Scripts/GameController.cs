@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     private Motives jsonMotives;                            // Motive und ihre Eigenschaften
     private int currentLevel;                               // Aktuelles Level
     private int currentMotiveIndex;                         // Index des aktuellen Motivs
+    public GameObject endDisplay;                           // Folie für das Ende des Spiels
 
     void Start() {
         // Initialisierung der Variablen
@@ -22,7 +23,7 @@ public class GameController : MonoBehaviour
         reader = GameObject.Find("JSONReader");
         grid = GameObject.Find("Grid");
         timer = GameObject.Find("TimerLabel").GetComponent<Timer>();
-        
+        endDisplay.SetActiveRecursively(false);
         currentMotiveIndex = 0;
 
         // Erstes Motiv einblenden
@@ -39,7 +40,6 @@ public class GameController : MonoBehaviour
         // Timer für das Bauen des Motivs überwachen
         if(timer.buildTimerExpired) {
             timer.buildTimerExpired = false;
-
             // Grid zurücksetzen
             grid.GetComponent<GridManager>().currentMotiveCells.Clear();
             grid.GetComponent<GridManager>().completedCells.Clear();
@@ -54,6 +54,9 @@ public class GameController : MonoBehaviour
             grid.GetComponent<GridManager>().completedCells.Clear();
             grid.GetComponent<GridManager>().isMotiveReady = false;
         }
+
+        if(currentMotiveIndex == reader.GetComponent<JSONReader>().motivesInJson.motives.Count)
+            endDisplay.SetActiveRecursively(true);
     }
 
     // Aktuelles Motiv aus den JSON-Daten holen und anzeigen
@@ -77,9 +80,6 @@ public class GameController : MonoBehaviour
                 grid.GetComponent<GridManager>().currentMotiveCells.Add(cellid, image.color);                                                                  
             }
         }
-        Debug.Log("index :" + index);
-        Debug.Log("motives :" + jsonMotives.motives.Count);
-
         UpdateNotes("Merke dir das Motiv " + motive.name + "!");
         UpdateLevel(motive.level);
     }

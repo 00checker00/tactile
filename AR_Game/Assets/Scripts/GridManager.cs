@@ -11,6 +11,8 @@ using System.Linq;
 public class GridManager : MonoBehaviour
 {
     public Color cellColor;                                                     // Ausgangsfarbe der Zellen im Grid
+    
+    public Color defaultColor;
     [HideInInspector] public bool isMotiveReady;                                // Wurde das Motiv komplett nachgebaut?
     [HideInInspector] public Dictionary<string, Color> currentMotiveCells;      // Alle Zellen des Grids, die für das aktuelle Motiv benötigt werden
     [HideInInspector] public Dictionary<string, Color> completedCells;          // Fertig gestellte Teile (Zellen) des Motivs
@@ -21,6 +23,12 @@ public class GridManager : MonoBehaviour
         currentMotiveCells = new Dictionary<string, Color>();
         completedCells = new Dictionary<string, Color>();
         isMotiveReady = false;
+
+        defaultColor = new Color();
+        defaultColor.a = GameObject.Find("1_1").GetComponent<Image>().color.a;
+        defaultColor.r = GameObject.Find("1_1").GetComponent<Image>().color.r;
+        defaultColor.g = GameObject.Find("1_1").GetComponent<Image>().color.g;
+        defaultColor.b = GameObject.Find("1_1").GetComponent<Image>().color.b;
     }
 
     // Abfrage, ob das Motiv fertiggestellt wurde
@@ -70,10 +78,8 @@ public class GridManager : MonoBehaviour
     // Farbe aller Zellen im Grid zurücksetzen
     public void ClearGrid() {
         foreach(Transform child in transform) {
-            Color color = new Color();
-            color = child.gameObject.GetComponent<Image>().color;
-            color.a = 0.5f;
-            child.gameObject.GetComponent<Image>().color = color;
+            defaultColor.a = 0.5f;
+            child.gameObject.GetComponent<Image>().color = defaultColor;
         }
     }
 
