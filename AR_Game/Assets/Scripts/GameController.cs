@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
             grid.GetComponent<GridManager>().isMotiveReady = false;
         }
 
+        // Ende des Spiels, wenn das letzte Motiv richtig gelöst wurde.
         if(currentMotiveIndex == reader.GetComponent<JSONReader>().motivesInJson.motives.Count)
             endDisplay.SetActiveRecursively(true);
     }
@@ -97,7 +98,7 @@ public class GameController : MonoBehaviour
         UpdateNotes("Baue das Motiv " + motive.name + " nach!");
     }
 
-    // Steine für aktuelles Motiv instanziieren und anzeigen lassen
+    // Bausteine für aktuelles Motiv instanziieren und anzeigen lassen
     void SwapBricksForMotive(int index) {
 
         Motive motive = jsonMotives.motives[index];
