@@ -14,14 +14,13 @@ public class GridManager : MonoBehaviour
     
     public Color defaultColor;
     [HideInInspector] public bool isMotiveReady;                                // Wurde das Motiv komplett nachgebaut?
-    [HideInInspector] public Dictionary<string, Color> currentMotiveCells;      // Alle Zellen des Grids, die für das aktuelle Motiv benötigt werden
-    [HideInInspector] public Dictionary<string, Color> completedCells;          // Fertig gestellte Teile (Zellen) des Motivs
+    [HideInInspector] public Dictionary<string, Color> currentMotiveCells = new Dictionary<string, Color>();     // Alle Zellen des Grids, die für das aktuelle Motiv benötigt werden
+    [HideInInspector] public Dictionary<string, Color> completedCells = new Dictionary<string, Color>();        // Fertig gestellte Teile (Zellen) des Motivs
 
     // Initialisierung der Variablen
     void Awake() {
+    
         ClearGrid();
-        currentMotiveCells = new Dictionary<string, Color>();
-        completedCells = new Dictionary<string, Color>();
         isMotiveReady = false;
 
         defaultColor = new Color();
@@ -80,7 +79,10 @@ public class GridManager : MonoBehaviour
         foreach(Transform child in transform) {
             defaultColor.a = 0.5f;
             child.gameObject.GetComponent<Image>().color = defaultColor;
+
         }
+
+        completedCells.Clear();
     }
 
     // Zellen des Grids dynamisch an das aktuelle Motiv anpassen
