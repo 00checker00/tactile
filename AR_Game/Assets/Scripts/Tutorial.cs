@@ -30,9 +30,19 @@ public class Tutorial : MonoBehaviour
     public float clickDisplayTime = 7;
 
     [Space(10)]
+    [Header("Explaining Grab")]
+    public GameObject grabText;
+    public GameObject grabSprite;
+    public float grabDisplayTime = 6.9f;
+
+    [Space(10)]
+    [Header("Ending")]
+    public GameObject endingText;
+    public float endingDisplayTime = 3;
+
+    [Space(10)]
     [Header("GameObjects for Gamestart")]
     public List<GameObject> gameObjects;
-
 
     private void Start()
     {
@@ -109,11 +119,35 @@ public class Tutorial : MonoBehaviour
         clickText.SetActive(false);
         clickSprite.SetActive(false);
 
-        // End tutorial and load game scene either in the background or let the tutorial freeze.
-        // It doesn't really matter if the tutorial freezes since nothing actually happens...
-        // ...from this point on anyway.
         yield return new WaitForSeconds(waitBetweenSteps);
-        EndTutorialAsync();
+        StartCoroutine(ExplainGrab());
+    }
+
+    private IEnumerator ExplainGrab()
+    {
+        grabText.SetActive(true);
+        grabSprite.SetActive(true);
+
+        yield return new WaitForSeconds(grabDisplayTime);
+
+        grabText.SetActive(false);
+        grabSprite.SetActive(false);
+
+        yield return new WaitForSeconds(waitBetweenSteps);
+        StartCoroutine(Ready4Game());
+    }
+
+    private IEnumerator Ready4Game()
+    {
+        endingText.SetActive(true);
+
+        yield return new WaitForSeconds(endingDisplayTime);
+
+        endingText.SetActive(false);
+
+        // End tutorial and load objects for game
+        yield return new WaitForSeconds(waitBetweenSteps);
+        EndTutorial();
     }
 
     public void SkipTutorial()
@@ -126,23 +160,11 @@ public class Tutorial : MonoBehaviour
                 child.SetActive(false);
         }
 
-        EndTutorialAsync();
+        EndTutorial();
     }
 
-    // End tutorial and load scene with game 
-    // *currently not in use*
+    // End tutorial and load objects for game
     private void EndTutorial()
-    {
-        skipTutorialButton.SetActive(false);
-
-        foreach(GameObject obj in gameObjects) {
-            obj.SetActiveRecursively(true);
-        } 
-        transform.gameObject.SetActiveRecursively(false);
-    }
-
-    // End tutorial and load scene with game asynchronously in the background
-    private void EndTutorialAsync()
     {
         skipTutorialButton.SetActive(false);
 
