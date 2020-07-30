@@ -66,7 +66,7 @@ public class TriggerGizmo : MonoBehaviour
                 break;
             case ManoGestureTrigger.DROP:
                 triggerLabelText.text = "Drop";
-                triggerLabelText.color = dropColor;
+                triggerLabelText.color = Color.green;
                 break;
             case ManoGestureTrigger.PICK:
                 triggerLabelText.text = "Pick";
