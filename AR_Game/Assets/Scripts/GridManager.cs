@@ -10,11 +10,11 @@ using System.Linq;
 // - Farbe auf den Ursprungszustand zurücksetzen
 public class GridManager : MonoBehaviour
 {
-    public Color cellColor;                                                     // Ausgangsfarbe der Zellen im Grid
+    public Color cellColor;     // Ausgangsfarbe der Zellen im Grid
     
     public Color defaultColor;
-    [HideInInspector] public bool isMotiveReady;                                // Wurde das Motiv komplett nachgebaut?
-    [HideInInspector] public Dictionary<string, Color> currentMotiveCells = new Dictionary<string, Color>();     // Alle Zellen des Grids, die für das aktuelle Motiv benötigt werden
+    [HideInInspector] public bool isMotiveReady;                                                                // Wurde das Motiv komplett nachgebaut?
+    [HideInInspector] public Dictionary<string, Color> currentMotiveCells = new Dictionary<string, Color>();    // Alle Zellen des Grids, die für das aktuelle Motiv benötigt werden
     [HideInInspector] public Dictionary<string, Color> completedCells = new Dictionary<string, Color>();        // Fertig gestellte Teile (Zellen) des Motivs
 
     // Initialisierung der Variablen
@@ -79,9 +79,7 @@ public class GridManager : MonoBehaviour
         foreach(Transform child in transform) {
             defaultColor.a = 0.5f;
             child.gameObject.GetComponent<Image>().color = defaultColor;
-
         }
-
         completedCells.Clear();
     }
 
